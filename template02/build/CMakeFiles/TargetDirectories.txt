@@ -1,0 +1,2 @@
+/home/amndan/workspace/myQtTest2/build/CMakeFiles/example.dir
+/home/amndan/workspace/myQtTest2/build/CMakeFiles/example_automoc.dir

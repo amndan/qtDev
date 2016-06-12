@@ -1,0 +1,2 @@
+/home/amndan/workspace/qt-cmake-template/build/source/CMakeFiles/example.dir
+/home/amndan/workspace/qt-cmake-template/build/source/CMakeFiles/example_automoc.dir

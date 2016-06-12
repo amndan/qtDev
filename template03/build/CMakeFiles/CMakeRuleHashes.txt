@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+a8b6248db5fec7557b39b6743127be84 source/CMakeFiles/example_automoc
+574cb82a4f61e9a19bd3c3755ac5e6b3 source/qrc_resources.cpp
+1b51f750a39aebb46623dcdcabd386a7 source/ui_main_window.h
