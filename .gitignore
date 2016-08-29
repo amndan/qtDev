@@ -1,1 +1,4 @@
-dir_view_example/build/
+*/build/
+*.sw*
+*.project
+*.cproject

@@ -1,5 +1,7 @@
 dont forget: cmake .. -DCMAKE_PREFIX_PATH=/opt/Qt/5.6/gcc_64/lib/cmake/
 
+or: cmake .. -DCMAKE_PREFIX_PATH=/home/amndan/software/qt5/5.7/gcc_64
+
 template01: with ui form
 template02: without ui with recources
 template03: source for 01 & 02 (git)
