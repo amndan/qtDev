@@ -2,6 +2,7 @@
 #include <QApplication>
 #include <QTcpSocket>
 #include <iostream>
+#include <MyClass.h>
 
 QDataStream stream;
 
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
   stream.setVersion(QDataStream::Qt_4_0);
 
   socket->abort();
-  socket->connectToHost("192.168.178.55", 33749);
+  socket->connectToHost("localhost", 33749);
 
   QObject::connect(socket, &QIODevice::readyRead, on_data_available);
 
@@ -26,14 +27,15 @@ int main(int argc, char *argv[])
 
 void on_data_available()
 {
-  
-  stream.startTransaction();
+  std::cout << "hit on data available" << std::endl;
 
   QString nextFortune;
+  double nextFortune2 = 0;
 
   do
   {
-    stream >> nextFortune;
+    stream.startTransaction();
+    stream >> nextFortune2;
   }
   while
   (
@@ -41,7 +43,7 @@ void on_data_available()
   );
 
   std::cout << nextFortune.toStdString() << std::endl;
+  std::cout << nextFortune2 << std::endl;
   
 
-  std::cout << "hit on data available" << std::endl;
 }

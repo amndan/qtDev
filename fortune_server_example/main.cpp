@@ -6,13 +6,20 @@
 #include <QNetworkInterface>
 #include <QString>
 #include <iostream>
+#include "moc_MyClass.cpp"
 
 QTcpServer* server;
 
 void on_connection();
 
+
 int main(int argc, char *argv[])
 {
+
+  MyClass* p_my_class = new MyClass();
+
+  p_my_class->my_int_var = 10;
+
   QApplication a(argc, argv);
 
   QString ip_address;
@@ -52,10 +59,13 @@ void on_connection()
   out.setVersion(QDataStream::Qt_4_0);
 
   QString data = "Hello World...";
+  double data2 = 47.11;
 
-  out << data;
+  out << data2;
 
   QTcpSocket* clientConnection = server->nextPendingConnection();
+  
+  //server->close();
 
   clientConnection->write(block);
   clientConnection->disconnectFromHost();
