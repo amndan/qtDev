@@ -3,8 +3,14 @@
 #include <QTcpSocket>
 #include <iostream>
 #include <MyClass.h>
+#include <QVector>
+#include <QByteArray>
+#include <QPair>
+#include <QString>
 
 QDataStream stream;
+QTcpSocket* p_socket;
+QApplication* p_app;
 
 void on_data_available();
 
@@ -12,7 +18,12 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   
+  p_app = &a;
+
+  //socket = new QTcpSocket();
   QTcpSocket* socket = new QTcpSocket();
+
+  p_socket = socket;
 
   stream.setDevice(socket);
   stream.setVersion(QDataStream::Qt_4_0);
@@ -27,23 +38,17 @@ int main(int argc, char *argv[])
 
 void on_data_available()
 {
-  std::cout << "hit on data available" << std::endl;
+  QPair < QVector<QString>, QVector<QByteArray> > my_pair;
 
-  QString nextFortune;
-  double nextFortune2 = 0;
+  stream.startTransaction();
+  stream >> my_pair;
 
-  do
+  if(stream.commitTransaction())
   {
-    stream.startTransaction();
-    stream >> nextFortune2;
+    std::cout << "got pair" << std::endl; 
+    //std::cout << my_pair.second.at(0).size() << std::endl;
+    
+    p_socket->abort();
+    p_socket->connectToHost("localhost", 33749);
   }
-  while
-  (
-    !stream.commitTransaction()
-  );
-
-  std::cout << nextFortune.toStdString() << std::endl;
-  std::cout << nextFortune2 << std::endl;
-  
-
 }

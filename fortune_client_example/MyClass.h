@@ -1,7 +1,10 @@
 #include <QtGui>
 
-class MyClass
+class MyClass : public QObject
 {
+
+  Q_OBJECT
+
   public:
     MyClass(){};
     ~MyClass(){};
